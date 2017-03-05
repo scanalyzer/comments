@@ -58,7 +58,7 @@
         <configuration>
          <appName>cs313-comments</appName>
          <processTypes>
-            <web>java $JAVA_OPTS -cp target/classes:target/dependency/* AuthenticateUser</web>
+            <web>java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war</web>
          </processTypes>
         </configuration>
       </plugin>

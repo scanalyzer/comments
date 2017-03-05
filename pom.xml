@@ -21,6 +21,11 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -45,6 +50,19 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            
+      <plugin>
+        <groupId>com.heroku.sdk</groupId>
+        <artifactId>heroku-maven-plugin</artifactId>
+        <version>1.1.3</version>
+        <configuration>
+         <appName>cs313-comments</appName>
+         <processTypes>
+            <web>java $JAVA_OPTS -cp target/classes:target/dependency/* AuthenticateUser</web>
+         </processTypes>
+        </configuration>
+      </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -56,6 +74,7 @@
                             <goal>copy</goal>
                         </goals>
                         <configuration>
+                            
                             <outputDirectory>${endorsed.dir}</outputDirectory>
                             <silent>true</silent>
                             <artifactItems>

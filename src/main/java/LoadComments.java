@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mcdanielar.cs313.comments.model.Comment;
+import java.util.Collections;
 
 /**
  *
@@ -76,7 +77,7 @@ public class LoadComments extends HttpServlet {
         // Pull comments from the file...
         String text;
         while((text = reader.readLine()) != null) { comments.add(new Comment(text)); }
-        
+        Collections.reverse(comments);
         request.setAttribute("comments", comments);
         request.getRequestDispatcher("showComments.jsp").forward(request, response);
     }
